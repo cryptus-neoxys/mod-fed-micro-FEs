@@ -1,13 +1,18 @@
 import { render } from "solid-js/web";
 
-import "./index.scss";
+import counterWrapper from "remote/counterWrapper";
 
-const App = () => (
-  <div class="mt-10 text-3xl mx-auto max-w-6xl">
-    <div>Name: solid-host</div>
-    <div>Framework: solid-js</div>
-    <div>Language: JavaScript</div>
-    <div>CSS: Tailwind</div>
-  </div>
-);
+import "./index.scss";
+import { onMount } from "solid-js";
+
+const App = () => {
+  let myDiv;
+  onMount(() => counterWrapper(myDiv));
+  return (
+    <div class="mt-10 text-3xl mx-auto max-w-6xl">
+      <div>Name: solid-host</div>
+      <div ref={myDiv}></div>
+    </div>
+  );
+};
 render(App, document.getElementById("app"));
